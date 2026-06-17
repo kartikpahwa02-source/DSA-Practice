@@ -15,3 +15,31 @@
     - Time Complexity: O(N) — We only slide across the array once!
     - Space Complexity: O(1) — No extra arrays needed.
 */
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+class Solution {
+  public:
+    int maxSubarraySum(vector<int>& arr, int k) {
+        int low=0;
+        int high=k-1;
+        int sum=0;
+        while(low<=high){
+            sum+=arr[low];
+            low++;
+        }
+        int max_sum=sum;
+        low=0;
+        while(high<arr.size()-1){
+        low++;
+        high++;
+        sum=sum+arr[high]-arr[low-1];
+        if(sum>max_sum){
+            max_sum=sum;
+        }
+        }
+        return max_sum;
+    }
+};
