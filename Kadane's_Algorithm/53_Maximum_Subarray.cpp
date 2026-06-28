@@ -24,24 +24,14 @@ using namespace std;
 class Solution {
 public:
     int maxSubArray(vector<int>& a) {
-        int best_ending = a;
-        int result = a;
-        
-        for (int i = 1; i < a.size(); i++) {
-            
-          
-            if (a[i] + best_ending > a[i]) {
-                best_ending = a[i] + best_ending;
-            } else {
-                best_ending = a[i]; 
-            }
-        
-          
-            if (result < best_ending) {
-                result = best_ending;
-            }
+            int best_ending=a[0];
+        int result=a[0];
+        for(int i=1;i<a.size();i++){
+           int v1=a[i]+best_ending;
+           int v2=a[i];
+           best_ending=max(v1,v2);
+           result=max(result,best_ending);
+           
         }
-        
         return result;
-    }
 };
